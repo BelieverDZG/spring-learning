@@ -24,7 +24,7 @@ public class TaskScheduleController {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                String time = new SimpleDateFormat("yy-MM-DD HH:mm:ss ").format(new Date());
+                String time = new SimpleDateFormat("yy-MM-dd HH:mm:ss ").format(new Date());
                 System.out.println("test success at :"+time);
             }
         };
