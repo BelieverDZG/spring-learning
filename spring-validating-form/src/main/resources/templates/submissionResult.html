@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Handle Submission Result</title>
+</head>
+<body>
+    <h1>表单返回结果</h1>
+    <p th:text="'salary:'+${submission.salary}"/>
+    <p th:text="'job:'+${submission.job}"/>
+    <a href="/handle">Submit another message</a>
+</body>
+</html>
