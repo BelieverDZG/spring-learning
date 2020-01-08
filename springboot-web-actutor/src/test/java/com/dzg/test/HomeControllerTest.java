@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.BDDAssertions.then;
@@ -43,6 +45,7 @@ public class HomeControllerTest {
     @Test
     public void testOne(){
 
+        List<String> lists = new ArrayList<String>();
         @SuppressWarnings("rawtypes")
         ResponseEntity<Map> entity = this.testRestTemplate.getForEntity(
                 "http://localhost:"+this.port+"/hello",Map.class
