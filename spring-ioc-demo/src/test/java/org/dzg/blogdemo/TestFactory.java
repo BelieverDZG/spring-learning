@@ -1,4 +1,4 @@
-package org.dzg.factory;
+package org.dzg.blogdemo;
 
 import org.dzg.pojo.Customer;
 

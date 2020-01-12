@@ -1,7 +1,7 @@
-package org.dzg.factory.impl;
+package org.dzg.blogdemo.impl;
 
 
-import org.dzg.factory.BeanDefinition;
+import org.dzg.blogdemo.BeanDefinition;
 
 public class DefaultBeanDefinition implements BeanDefinition {
 

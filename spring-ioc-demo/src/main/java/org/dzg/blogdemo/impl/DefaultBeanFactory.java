@@ -1,10 +1,10 @@
-package org.dzg.factory.impl;
+package org.dzg.blogdemo.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dzg.factory.BeanDefinition;
-import org.dzg.factory.BeanDefinitionRegistry;
-import org.dzg.factory.BeanFactory;
+import org.dzg.blogdemo.BeanDefinition;
+import org.dzg.blogdemo.BeanDefinitionRegistry;
+import org.dzg.blogdemo.BeanFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;

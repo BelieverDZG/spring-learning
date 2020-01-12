@@ -1,7 +1,7 @@
-package org.dzg;
+package org.dzg.blogdemo;
 
-import org.dzg.factory.impl.DefaultBeanDefinition;
-import org.dzg.factory.impl.DefaultBeanFactory;
+import org.dzg.blogdemo.impl.DefaultBeanDefinition;
+import org.dzg.blogdemo.impl.DefaultBeanFactory;
 import org.dzg.pojo.Customer;
 import org.junit.Test;
 
