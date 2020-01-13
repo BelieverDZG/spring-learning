@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--扫描bean-->
+    <context:component-scan base-package="org.dzg.beanlife"/>
+
+    <!--实现用户自定义的-->
+    <bean id="book" class="org.dzg.beanlife.Book" init-method="myPostConstruct" destroy-method="myPreDestroy">
+        <property name="bookName" value="spring in action"></property>
+    </bean>
+
+    <!--引入自定义的BeanPostProcessor-->
+    <bean class="org.dzg.beanlife.MyBeanPostProcessor"></bean>
+</beans>

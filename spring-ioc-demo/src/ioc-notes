@@ -18,3 +18,5 @@
         创建Bean需要提供什么
     Bean工厂
     注册Bean定义
+
+    bean生命周期详解：https://mp.weixin.qq.com/s?__biz=MzI4Njc5NjM1NQ==&mid=2247488494&idx=1&sn=1ad8b2b4313b173b431a4e4943423f04&chksm=ebd62cc2dca1a5d4b434fe9913cc1ffbb42f61aac4d4364a38c8b15c1df524167336a2d4d6cb&scene=21#wechat_redirect
