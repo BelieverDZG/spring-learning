@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *    整合后，对于测试人员来说不需要关注需要创建哪些对象或者获取哪些资源，只需要关注方法功能本身
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/beans.xml")
+@ContextConfiguration(locations = "/beans-ioc-xml.xml")
 public class AccountServiceTest {
 
     @Autowired

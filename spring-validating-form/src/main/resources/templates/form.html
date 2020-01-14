@@ -11,6 +11,7 @@
     <form action="#" th:action="@{/}" th:object="${personForm}" method="post">
         <table>
             <tr>
+                <!--th:field="*{name}"用来引用后端对象name域-->
                 <td>姓名:</td>
                 <td><input type="text" th:field="*{name}" /></td>
                 <!--判断数据是否符合要求，若不符合要求，将会相识出错误信息-->

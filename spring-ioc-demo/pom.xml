@@ -65,6 +65,25 @@
       <version>1.6</version>
     </dependency>
 
+      <dependency>
+          <groupId>com.github.marschall</groupId>
+          <artifactId>jdbctemplate-ng</artifactId>
+          <version>0.1.0</version>
+      </dependency>
+
+    <!--使用JdbcTemplate依赖下述两个包-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>5.2.2.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId><!--包含事务和异常控制-->
+      <version>5.2.2.RELEASE</version>
+    </dependency>
+
   </dependencies>
 
   <build>

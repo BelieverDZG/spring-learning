@@ -23,7 +23,7 @@ public class DbConnectionTest {
     }
     @Test
     public void testConnection(){
-        /*ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+        /*ApplicationContext ac = new ClassPathXmlApplicationContext("beans-ioc-xml.xml");
         Object dataSource = ac.getBean("dataSource", ComboPooledDataSource.class);
         System.out.println(dataSource);*/
         Connection threadConnection = connectionUtils.getThreadConnection();

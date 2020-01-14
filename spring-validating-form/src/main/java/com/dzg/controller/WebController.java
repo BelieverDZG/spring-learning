@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
 
+/**
+ * 用于验证PersonForm的提交信息是否符合其中的规则
+ */
 @Controller
 public class WebController implements WebMvcConfigurer {
 
