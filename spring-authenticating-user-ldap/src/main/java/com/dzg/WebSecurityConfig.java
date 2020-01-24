@@ -17,7 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .fullyAuthenticated()
                 .and()
-                .formLogin();
+                .formLogin();//启用默认的登录页面
     }
 
     /*
@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .groupSearchBase("ou=groups")
                 .contextSource()
                     .url("ldap://localhost:8389/dc=springframework,dc=org")
+//                .ldif("classpath:test-server.ldif")
                     .and()
                 .passwordCompare()
                         .passwordEncoder(new LdapShaPasswordEncoder())
