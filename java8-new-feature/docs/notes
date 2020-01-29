@@ -6,3 +6,14 @@
     可以取代接口类参数，提高接口的通用性
 
     需要一个接口 、接口中只能有一个方法
+
+2、Stream流
+
+ Thread.sleep() 查看线程数  -----工具jconsole
+
+ 底层用到forkjoin
+
+ Optional 可避免NPE问题
+
+3、2020-01-27
+filter
