@@ -17,3 +17,16 @@
 
 3、2020-01-27
 filter
+
+4.Optional
+构造方式：
+    of
+    empty
+    ofNullable（of/empty）
+    or
+    orElse
+    orElseGet
+
+
+    函数式编程理念
+        如何做，而不是做什么？
