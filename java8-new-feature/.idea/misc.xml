@@ -22,4 +22,11 @@
   <component name="ScalaSbtSettings">
     <option name="customVMPath" />
   </component>
+  <component name="SuppressABINotification">
+    <option name="modulesWithSuppressedNotConfigured">
+      <set>
+        <option value="java8-new-feature" />
+      </set>
+    </option>
+  </component>
 </project>
