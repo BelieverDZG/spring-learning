@@ -50,5 +50,6 @@
         <aop:aspect id="logAdvice" ref="logger">
             <aop:around method="aroundPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
         </aop:aspect>
+
     </aop:config>
 </beans>
