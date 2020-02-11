@@ -33,23 +33,28 @@
         <!--<aop:aspect id="logAdvice" ref="logger">
             &lt;!&ndash; 配置通知的类型，并且建立通知方法和切入点方法的关联 &ndash;&gt;
 
-            &lt;!&ndash;前置通知&ndash;&gt;
+            &lt;!&ndash;前置通知:在目标方法被调用之前调用通知功能&ndash;&gt;
             <aop:before method="printLogger" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
 
-            &lt;!&ndash;后置通知,在方法执行中执行的方法&ndash;&gt;
+            &lt;!&ndash;返回通知,在目标方法成功执行之后调用通知&ndash;&gt;
             <aop:after-returning method="afterReturningPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
 
-            &lt;!&ndash;异常通知&ndash;&gt;
+            &lt;!&ndash;异常通知:在目标方法抛出异常后调用通知&ndash;&gt;
             <aop:after-throwing method="throwingPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
 
-            &lt;!&ndash;最终通知 无论是否发生异常，最终都会执行该方法&ndash;&gt;
+            &lt;!&ndash; //最终通知 无论是否发生异常，最终都会执行该方法？
+            后置通知：在目标方法完成之后调用通知，此时不会关心方法的输出是什么
+            &ndash;&gt;
             <aop:after method="finalPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
         </aop:aspect>-->
 
-        <!--配置环绕通知-->
-        <aop:aspect id="logAdvice" ref="logger">
+            <!--配置环绕通知-->
+       <!-- <aop:aspect id="logAdvice" ref="logger">
             <aop:around method="aroundPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
-        </aop:aspect>
+        </aop:aspect>-->
 
     </aop:config>
+
+    <!--配置AOP自动注解-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>
