@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dzg.mapper.UserMapper">
+    <resultMap id="res" type="com.dzg.entity.User">
+        <result column="id" jdbcType="INTEGER" property="id"></result>
+        <result column="username" jdbcType="VARCHAR" property="userName"></result>
+        <result column="password" jdbcType="VARCHAR" property="passWord"></result>
+    </resultMap>
+    
+    <select id="findUserById" resultType="com.dzg.entity.User">
+        select * from user where id = #{id}
+    </select>
+</mapper>
+<!--
+命名空间的作用有两个，
+一个是利用更长的全限定名来将不同的语句隔离开来，
+同时也实现了你上面见到的接口绑定。就算你觉得暂时用不到接口绑定，
+你也应该遵循这里的规定，以防哪天你改变了主意。
+长远来看，只要将命名空间置于合适的 Java 包命名空间之中，
+你的代码会变得更加整洁，也有利于你更方便地使用 MyBatis。
+-->
