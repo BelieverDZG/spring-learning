@@ -1,12 +1,12 @@
 server:
-  port: 8012 #端口
+  port: 8013 #端口
 spring:
   cloud:
     loadbalancer:
       retry:
         enabled: true # 开启Spring Cloud的重试功能
   application:
-    name: service-order #服务名称
+    name: service-order-feign #服务名称
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url:  jdbc:mysql://localhost:3306/db_spring?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
@@ -42,6 +42,14 @@ feign:
     config:
       service-product: #需要调用的服务名称
         loggerLevel: FULL
+  hystrix: #在feign中开启hystrix熔断
+    enabled: true
 logging:
   level:
     com.dzg.order.feign.ProductFeignClient: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
