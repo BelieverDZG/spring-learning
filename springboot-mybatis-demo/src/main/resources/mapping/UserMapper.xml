@@ -11,6 +11,7 @@
         select * from user where id = #{id}
     </select>
 </mapper>
+
 <!--
 命名空间的作用有两个，
 一个是利用更长的全限定名来将不同的语句隔离开来，
