@@ -49,7 +49,8 @@ public class SpringJdbcRelationalDadaAccessApplication implements CommandLineRun
                 "id SERIAL,first_name varchar(100),last_name varchar(100))");
 
         //将一组用名称划分为first/last两个数组
-        List<Object[]> splictUpNames = Arrays.asList("Da Dan","li lade","deng tianyi","xiao yangfan").
+        List<String> strings = Arrays.asList("Da Dan", "li lade", "deng tianyi", "xiao yangfan");
+        List<Object[]> splictUpNames = strings.
                 stream().
                 map(name -> name.split(" ")).
                 collect(Collectors.toList());
