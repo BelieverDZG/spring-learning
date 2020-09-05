@@ -1,0 +1,22 @@
+参考链接：https://www.jianshu.com/p/17b66e6390fd
+1.IOC概念
+    Inversion of Control 即控制反转，将由客户端代码创建的
+对象交由IOC容器来进行控制，对象的创建、初始化和管理都交由后面的容器来进行管理。
+
+2、IOC优点
+
+    解耦
+    方便与AOP进行配合
+
+3、IOC涉及的设计模式
+
+    工厂模式
+
+4、实现步骤
+    Bean的定义
+        如何创建Bean
+        创建Bean需要提供什么
+    Bean工厂
+    注册Bean定义
+
+    bean生命周期详解：https://mp.weixin.qq.com/s?__biz=MzI4Njc5NjM1NQ==&mid=2247488494&idx=1&sn=1ad8b2b4313b173b431a4e4943423f04&chksm=ebd62cc2dca1a5d4b434fe9913cc1ffbb42f61aac4d4364a38c8b15c1df524167336a2d4d6cb&scene=21#wechat_redirect

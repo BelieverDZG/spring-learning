@@ -1,0 +1,47 @@
+server:
+  port: 8012 #端口
+spring:
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true # 开启Spring Cloud的重试功能
+  application:
+    name: service-order #服务名称
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost:3306/db_spring?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    database: MySQL
+    show-sql: true
+    open-in-view: true
+#配置Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/ #,http://localhost:8000/eureka/
+  instance:
+    prefer-ip-address: true #使用ip地址注册
+
+#修改ribbon的负载均衡策略   服务名 -  ribbon - NFLoadBalancerRuleClassName : 策略
+service-product:
+  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #随机策略
+    ConnectTimeout: 250 # Ribbon的连接超时时间
+    ReadTimeout: 1000 # Ribbon的数据读取超时时间
+    OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
+    MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
+    MaxAutoRetries: 1 # 对当前实例的重试次数
+
+#配置feign的日志输出
+#日志配置 NONE :不输出日志（高） BASIC：适用于生产环境追踪问题
+#HEADERS ：在BASIC基础之上，记录请求和响应头信息 FULL：记录所有
+feign:
+  client:
+    config:
+      service-product: #需要调用的服务名称
+        loggerLevel: FULL
+logging:
+  level:
+    com.dzg.order.feign.ProductFeignClient: debug

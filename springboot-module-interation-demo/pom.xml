@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--基本信息-->
+    <modelVersion>4.0.0</modelVersion>
+    <name>springboot-module-interation-demo</name>
+    <description>项目分模块开发简单案例</description>
+    <!--继承说明，这里继承SpringBoot提供的父工程-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!--这里作为聚合工程的父工程-->
+    <groupId>com.dzg</groupId>
+    <artifactId>springboot-module-interation-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <!--模块说明：这里声明多个子模块-->
+    <modules>
+        <module>mm-web</module>
+        <module>mm-service</module>
+        <module>mm-repo</module>
+        <module>mm-entity</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <!--版本说明，这里统一管理依赖的版本号-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.dzg</groupId>
+                <artifactId>mm-web</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dzg</groupId>
+                <artifactId>mm-entity</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dzg</groupId>
+                <artifactId>mm-service</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dzg</groupId>
+                <artifactId>mm-repo</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
+

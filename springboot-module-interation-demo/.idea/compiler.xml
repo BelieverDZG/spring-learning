@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mm-web" />
+        <module name="mm-entity" />
+        <module name="mm-service" />
+        <module name="mm-repo" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mm-entity" target="1.8" />
+      <module name="mm-repo" target="1.8" />
+      <module name="mm-service" target="1.8" />
+      <module name="mm-web" target="1.8" />
+      <module name="springboot-module-interation-demo" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mm-entity" options="-parameters" />
+      <module name="mm-repo" options="-parameters" />
+      <module name="mm-service" options="-parameters" />
+      <module name="mm-web" options="-parameters" />
+      <module name="springboot-module-interation-demo" options="-parameters" />
+    </option>
+  </component>
+</project>

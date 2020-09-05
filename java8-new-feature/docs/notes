@@ -1,0 +1,60 @@
+之前的笔记：
+    https://blog.csdn.net/qq_36964872/article/details/93877320
+
+1.Lambda表达式（stream、函数式编程基础）
+
+    可以取代接口类参数，提高接口的通用性
+
+    需要一个接口 、接口中只能有一个方法
+
+2、Stream流
+
+ Thread.sleep() 查看线程数  -----工具jconsole
+
+ 底层用到forkjoin
+
+ Optional 可避免NPE问题
+
+3、2020-01-27
+filter
+
+4.Optional
+构造方式：
+    of
+    empty
+    ofNullable（of/empty）
+    or
+    orElse
+    orElseGet
+
+
+    函数式编程理念
+        如何做，而不是做什么？
+5.Collectors
+
+参数BinaryOperator ？
+    (d1,d2) -> d1+d2 操作类型对结果是否有影响？
+
+6、
+    Fork Join
+    分而治之
+    1~10加法
+
+    ForkJoinPool
+    RecursiveTask
+    RecursiveAction
+
+
+    ctrl + alt + 左键 =======跳转回原方法
+7、《Java解惑》
+    类 ====》 子类 ===》实现没有关联的接口（多重继承）要实现自己的方法
+
+    Date API
+
+Java 并发编程
+ concurrent包下
+
+ Future
+ CompletableFuture
+
+ 8 《Java8 function program》

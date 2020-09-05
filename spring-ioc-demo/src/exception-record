@@ -1,0 +1,13 @@
+1.spring版本不一致导致的问题
+ Exception encountered during context initialization - cancelling refresh attempt:
+ org.springframework.beans.factory.BeanCreationException:
+ Error creating bean with name 'dataSource' defined in class path resource [beans.xml]:
+  Initialization of bean failed; nested exception is java.lang.NoSuchMethodError:
+   org.springframework.core.MethodParameter.withContainingClass(Ljava/lang/Class;)
+   Lorg/springframework/core/MethodParameter;
+
+2.缺少传递的Connection连接，导致下述异常
+query(Connection conn, String sql, ResultSetHandler<T> rsh)
+
+java.lang.RuntimeException: java.sql.SQLException: QueryRunner requires a DataSource to be invoked in this way, or a Connection should be passed in
+

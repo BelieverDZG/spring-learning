@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--把service对象配置进来-->
+    <bean id="accountService" class="com.dzg.service.impl.AccountServiceImpl"></bean>
+
+    <bean id="logger" class="com.dzg.utils.Logger"></bean>
+
+    <!-- spring中基于XML的AOP配置步骤
+         1.把通知bean也交给spring来管理
+         2.使用aop:config 标签表明开始AOP配置
+         3.使用aop：aspect标签表明配置切面
+               id属性：是给切面提供的唯一标识
+               ref属性：是指定通知bean的ID
+         4.在aop：aspect标签内部使用对应的标签来配置通知的类型
+             我们现在的实例是让printlog在切入点方法执行之前执行，所以是迁址通知
+             sop:before:表示前置通知
+                 method属性：用于指定Logger类中哪个方法是前置的
+                 pointcut属性：用于指定切入点表达式，该表达式的含义是指对业务层中哪些方法加强
+
+         切入点表达式写法：
+     -->
+
+    <!--配置AOP-->
+    <aop:config>
+        <!--配置签名-->
+        <!--<aop:aspect id="logAdvice" ref="logger">
+            &lt;!&ndash; 配置通知的类型，并且建立通知方法和切入点方法的关联 &ndash;&gt;
+
+            &lt;!&ndash;前置通知:在目标方法被调用之前调用通知功能&ndash;&gt;
+            <aop:before method="printLogger" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
+
+            &lt;!&ndash;返回通知,在目标方法成功执行之后调用通知&ndash;&gt;
+            <aop:after-returning method="afterReturningPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
+
+            &lt;!&ndash;异常通知:在目标方法抛出异常后调用通知&ndash;&gt;
+            <aop:after-throwing method="throwingPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
+
+            &lt;!&ndash; //最终通知 无论是否发生异常，最终都会执行该方法？
+            后置通知：在目标方法完成之后调用通知，此时不会关心方法的输出是什么
+            &ndash;&gt;
+            <aop:after method="finalPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
+        </aop:aspect>-->
+
+            <!--配置环绕通知-->
+       <!-- <aop:aspect id="logAdvice" ref="logger">
+            <aop:around method="aroundPrint" pointcut="execution(* com.dzg.service.impl.*.*(..))"/>
+        </aop:aspect>-->
+
+    </aop:config>
+
+    <!--配置AOP自动注解-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+</beans>

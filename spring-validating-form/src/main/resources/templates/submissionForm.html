@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Handle Submission </title>
+</head>
+<body>
+    <!--
+        th:action="@{/handle} 表单要执行的动作
+        th:object="${submission} 声明使用的模型对象，收集数据
+        th:field="*{salary}" 对应pojo类的基本属性
+    -->
+    <form action="#" th:action="@{/handle}" th:object="${submission}" method="post">
+        <p>Salary:<input type="text" th:field="*{salary}"/></p>
+        <p>JOB:<input type="text" th:field="*{job}"/></p>
+        <p><input type="submit" value="submit"/></p><p><input type="reset" value="reset"/></p>
+    </form>
+</body>
+</html>
