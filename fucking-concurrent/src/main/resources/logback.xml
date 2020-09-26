@@ -27,6 +27,10 @@
         </triggeringPolicy>
     </appender>
 
+    <logger name="c" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
     <!-- 日志输出级别 -->
     <root level="INFO">
         <appender-ref ref="STDOUT" />

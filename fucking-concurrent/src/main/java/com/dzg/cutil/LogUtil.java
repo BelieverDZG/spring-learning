@@ -1,4 +1,4 @@
-package com.dzg.util;
+package com.dzg.cutil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

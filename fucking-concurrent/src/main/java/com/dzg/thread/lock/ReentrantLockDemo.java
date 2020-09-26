@@ -1,9 +1,7 @@
 package com.dzg.thread.lock;
 
-import com.dzg.util.LogUtil;
-import org.apache.commons.logging.Log;
+import com.dzg.cutil.LogUtil;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.locks.ReentrantLock;
 
