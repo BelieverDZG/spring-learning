@@ -1,8 +1,16 @@
 package com.dzg.thread.sync;
 
+import java.util.Objects;
+
 import static java.lang.Thread.sleep;
 
-public class DeadLock {
+public class DeadLock<Item>{
+
+//    Item[] a;
+//
+//    public DeadLock() {
+//        a = (Item[]) new Object[10];
+//    }
 
     public static void main(String[] args) {
         testDeadLock();
