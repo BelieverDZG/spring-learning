@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,7 +49,8 @@ public class SpringJdbcRelationalDadaAccessApplication implements CommandLineRun
                 "id SERIAL,first_name varchar(100),last_name varchar(100))");
 
         //将一组用名称划分为first/last两个数组
-        List<Object[]> splictUpNames = Arrays.asList("Da Dan","li lade","deng tianyi","xiao yangfan").
+        List<String> strings = Arrays.asList("Da Dan", "li lade", "deng tianyi", "xiao yangfan");
+        List<Object[]> splictUpNames = strings.
                 stream().
                 map(name -> name.split(" ")).
                 collect(Collectors.toList());
@@ -61,9 +63,11 @@ public class SpringJdbcRelationalDadaAccessApplication implements CommandLineRun
 
         logger.info("Query for customer records where first_name = 'xiao'：");
 
+        RowMapper<Customer> customerRowMapper = (rs, rowNum) -> new Customer(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"));
+
         jdbcTemplate.query("SELECT * FROM tb_customer where first_name = ?",
                 new Object[]{"xiao"},
-                (rs,rowNum) -> new Customer(rs.getInt("id"),rs.getString("first_name"),rs.getString("last_name")))
+                customerRowMapper)
         .forEach(customer -> logger.info(customer.toString()));
 
     }
