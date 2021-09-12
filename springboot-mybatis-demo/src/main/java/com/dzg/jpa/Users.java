@@ -1,14 +1,12 @@
 package com.dzg.jpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
 public class Users {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //主键由数据库自动生成，Oracle不支持这种方式
     @Id
     private Integer id;
     @Column(name = "username")

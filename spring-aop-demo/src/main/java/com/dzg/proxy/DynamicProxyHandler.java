@@ -1,5 +1,6 @@
 package com.dzg.proxy;
 
+import javax.lang.model.element.NestingKind;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -30,5 +31,10 @@ public class DynamicProxyHandler implements InvocationHandler {
         //代理真实对象后，可进行一些操作
         System.out.println("==========代理真实对象后，可进行一些操作========="+"\n");
         return null;
+    }
+
+    public static void main(String[] args) {
+        String s = "!111";
+
     }
 }

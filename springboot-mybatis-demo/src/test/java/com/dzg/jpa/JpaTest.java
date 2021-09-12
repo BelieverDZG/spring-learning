@@ -39,9 +39,9 @@ public class JpaTest {
     @Test
     public void insertTest() {
         Users user = new Users();
-        user.setId(3);
+        user.setId(4);
         user.setUserName("李四");
-        user.setPassword("6789");
+        user.setPassword("678910");
         Users save = usersRepo.save(user);
         if (save != null) System.out.println("增加用户成功");
     }

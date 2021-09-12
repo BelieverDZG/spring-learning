@@ -15,6 +15,9 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
   type-aliases-package: com.dzg.entity
+  configuration:
+    cache-enabled: true
+
 logging:
   level:
     com:

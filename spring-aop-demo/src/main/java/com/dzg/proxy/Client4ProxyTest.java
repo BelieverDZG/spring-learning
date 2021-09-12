@@ -34,7 +34,8 @@ public class Client4ProxyTest {
          * newProxyInstance 方法中第三个参数为接口，可以使用匿名内部类的方式来实现动态代理
          */
         INbaStar iNbaStar = (INbaStar) Proxy.newProxyInstance(nbaStar.getClass().getClassLoader(),
-                nbaStar.getClass().getInterfaces(), (proxy, method, args1) -> {
+                nbaStar.getClass().getInterfaces(),
+                (proxy, method, args1) -> {
 
                     System.out.println(proxy.getClass().getName());
                     if (method.getName().equals("dance")) {

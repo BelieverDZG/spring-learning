@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dzg.mapper.EmployeeMapper">
+
+    <!--开启本mapper的namespace下的二级缓存-->
+    <cache eviction="LRU" flushInterval="10000" readOnly="true" size="1024"/>
+
+    <!--员工基础类型-->
+    <resultMap id="baseResultMap" type="com.dzg.entity.Employee">
+        <id column="id" jdbcType="INTEGER" property="id"></id>
+        <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="gender" property="gender" jdbcType="CHAR"></result>
+        <result column="idCard" property="idCard" jdbcType="CHAR"></result>
+        <result column="nationId" property="nationId" jdbcType="INTEGER"></result>
+        <result column="nativePlace" property="nativePlace" jdbcType="VARCHAR"></result>
+        <result column="phone" property="phone" jdbcType="VARCHAR"></result>
+        <result column="beginContract" property="beginContract" jdbcType="VARCHAR"></result>
+        <result column="endContract" property="endContract" jdbcType="VARCHAR"></result>
+        <result column="workAge" property="workAge" jdbcType="INTEGER"></result>
+    </resultMap>
+
+    <!--员工完整的类型信息-->
+    <resultMap id="employeeFullMap" type="com.dzg.entity.Employee" extends="baseResultMap">
+        <association property="nation" javaType="com.dzg.entity.Nation">
+            <id column="nid" property="id"/>
+            <result column="nname" property="name"/>
+        </association>
+    </resultMap>
+
+    <!--添加员工-->
+    <insert id="addEmployee" parameterType="com.dzg.entity.Employee">
+      insert into TB_DEMO_EMPLOYEE (id, name, gender,
+      idCard, nationId,nativePlace,phone,
+      beginContract, endContract, workAge
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR},
+      #{idCard,jdbcType=CHAR}, #{nationId,jdbcType=INTEGER},
+      #{nativePlace,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+      #{beginContract,jdbcType=VARCHAR}, #{endContract,jdbcType=VARCHAR}, #{workAge,jdbcType=INTEGER}
+      )
+    </insert>
+
+    <!--批量添加员工-->
+    <insert id="addEmployees">
+        insert into TB_DEMO_EMPLOYEE (name, gender,
+        idCard, nationId,nativePlace,phone,
+        beginContract, endContract, workAge
+        )
+        values
+        <foreach collection="list" separator="," item="emp">
+            ( #{emp.name,jdbcType=VARCHAR}, #{emp.gender,jdbcType=CHAR},
+            #{emp.idCard,jdbcType=CHAR}, #{emp.nationId,jdbcType=INTEGER},
+            #{emp.nativePlace,jdbcType=VARCHAR}, #{emp.phone,jdbcType=VARCHAR},
+            #{emp.beginContract,jdbcType=VARCHAR}, #{emp.endContract,jdbcType=VARCHAR},
+            #{emp.workAge,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+
+    <!--动态添加员工-->
+    <insert id="insertSelective" parameterType="com.dzg.entity.Employee"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into TB_DEMO_EMPLOYEE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="idCard != null">
+                idCard,
+            </if>
+            <if test="nationId != null">
+                nationId,
+            </if>
+            <if test="nativePlace != null">
+                nativePlace,
+            </if>
+
+            <if test="phone != null">
+                phone,
+            </if>
+
+            <if test="beginContract != null">
+                beginContract,
+            </if>
+            <if test="endContract != null">
+                endContract,
+            </if>
+
+            <if test="workAge != null">
+                workAge,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=CHAR},
+            </if>
+            <if test="idCard != null">
+                #{idCard,jdbcType=CHAR},
+            </if>
+            <if test="nationId != null">
+                #{nationId,jdbcType=INTEGER},
+            </if>
+            <if test="nativePlace != null">
+                #{nativePlace,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="beginContract != null">
+                #{beginContract,jdbcType=VARCHAR},
+            </if>
+            <if test="endContract != null">
+                #{endContract,jdbcType=VARCHAR},
+            </if>
+            <if test="workAge != null">
+                #{workAge,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+
+    <!--根据主键删除员工-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+         delete from TB_DEMO_EMPLOYEE
+         where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.dzg.entity.Employee">
+        update TB_DEMO_EMPLOYEE
+        set name=#{name,jdbcType=VARCHAR}, gender=#{gender,jdbcType=CHAR},
+        idCard= #{idCard,jdbcType=CHAR}, nationId=#{nationId,jdbcType=INTEGER},
+        nativePlace= #{nativePlace,jdbcType=VARCHAR},phone= #{phone,jdbcType=VARCHAR},
+        beginContract= #{beginContract,jdbcType=VARCHAR},endContract= #{endContract,jdbcType=VARCHAR},
+        workAge=#{workAge,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--根据id查询employee的信息-->
+    <select id="getEmployeeById" resultType="com.dzg.entity.Employee" parameterType="java.lang.Integer">
+        select e.*,n.id as nid,n.name as nname
+        from TB_DEMO_EMPLOYEE e,TB_DEMO_NATION n
+        where e.nationId = n.id and e.id=#{id}
+    </select>
+
+    <!--分页查询-->
+    <select id="getEmployeeByPage" resultMap="employeeFullMap">
+        select e.*,n.id as nid,n.name as nname
+        from TB_DEMO_EMPLOYEE e,TB_DEMO_NATION n
+        <where>
+            <if test="emp.name !=null and emp.name!=''">
+                and e.name like concat('%',#{emp.name},'%')
+            </if>
+            <if test="emp.nationId !=null">
+                and e.nationId =#{emp.nationId}
+            </if>
+            <if test="page !=null and size!=null">
+                 limit #{page},#{size}
+            </if>
+        </where>
+
+    </select>
+
+    <!--动态获取员工记录总数-->
+    <select id="getTotalRecords" resultType="java.lang.Long" parameterType="com.dzg.entity.Employee">
+        select count(*) from TB_DEMO_EMPLOYEE e
+        <where>
+            <if test="emp!=null">
+                <if test="emp.name !=null and emp.name!=''">
+                    and e.name like concat('%',#{emp.name},'%')
+                </if>
+                <if test="emp.nationId !=null">
+                    and e.nationId =#{emp.nationId}
+                </if>
+            </if>
+        </where>
+    </select>
+
+
+    <select id="getMaxId" resultType="java.lang.Integer">
+        SELECT max(id)
+        FROM TB_DEMO_EMPLOYEE
+    </select>
+
+
+    <!--
+    Oracle分页查询
+    select *
+        from(
+        select rownum r, e.*,n.id as nid,n.name as nname
+        from TB_DEMO_EMPLOYEE e,TB_DEMO_NATION n
+        WHERE e.nationId=n.id and rownum &lt;= #{size}*#{page}
+    )
+    where r> #{size}*#{page} - #{size}-->
+
+</mapper>

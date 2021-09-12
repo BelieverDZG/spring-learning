@@ -1,22 +1,93 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dzg.mapper.UserMapper">
+
+    <!--开启本mapper的namespace下的二级缓存-->
+    <!--
+        eviction:代表的是缓存回收策略，目前MyBatis提供以下策略。
+        (1) LRU,最近最少使用的，一处最长时间不用的对象
+        (2) FIFO,先进先出，按对象进入缓存的顺序来移除他们
+        (3) SOFT,软引用，移除基于垃圾回收器状态和软引用规则的对象
+        (4) WEAK,弱引用，更积极的移除基于垃圾收集器状态和弱引用规则的对象。这里采用的是LRU，
+                移除最长时间不用的对形象
+
+        flushInterval:刷新间隔时间，单位为毫秒，这里配置的是10秒刷新，如果你不配置它，那么当
+        SQL被执行的时候才会去刷新缓存。
+
+        size:引用数目，一个正整数，代表缓存最多可以存储多少个对象，不宜设置过大。设置过大会导致内存溢出。
+        这里配置的是1024个对象
+
+        readOnly:只读，意味着缓存数据只能读取而不能修改，这样设置的好处是我们可以快速读取缓存，缺点是我们没有
+        办法修改缓存，他的默认值是false，不允许我们修改
+    -->
+    <cache eviction="LRU" flushInterval="10000" readOnly="true" size="1024"/>
+
+    <!--if
+      choose (when, otherwise)
+      trim (where, set)
+      foreach
+    -->
     <resultMap id="res" type="com.dzg.entity.User">
         <result column="id" jdbcType="INTEGER" property="id"></result>
         <result column="username" jdbcType="VARCHAR" property="userName"></result>
-        <result column="password" jdbcType="VARCHAR" property="passWord"></result>
+        <result column="password" jdbcType="VARCHAR" property="password"></result>
+       <!-- <constructor>
+            <idArg column="id" name="id"></idArg>
+            <arg column="username" name="username"></arg>
+            <arg column="password" name="password"></arg>
+        </constructor>-->
     </resultMap>
-    
-    <select id="findUserById" resultType="com.dzg.entity.User">
+
+    <insert id="addUser" parameterType="com.dzg.entity.User">
+        insert into user(id,username,password)
+        values (
+            #{user.id},
+            #{user.userName},
+            #{user.password}
+        )
+    </insert>
+
+    <update id="updateUserById" parameterType="com.dzg.entity.User">
+        update user
+        <set>
+            <if test="user.userName != null">username = #{user.userName},</if>
+            <if test="user.password != null">username = #{user.password}</if>
+        </set>
+        where id = #{user.id}
+    </update>
+
+    <delete id="deleteUserById" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+
+    <select id="findUserById" resultType="com.dzg.entity.User" >
         select * from user where id = #{id}
     </select>
+
+    <select id="getAllUsers" resultType="com.dzg.entity.User">
+        select * from user
+    </select>
+
+    <!--根据ids选择用户-->
+    <select id="findUserByIds" resultType="com.dzg.entity.User">
+        select *
+        from user
+        where id in
+        <foreach collection="list" item="item" index="index"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
 </mapper>
 
-<!--
-命名空间的作用有两个，
-一个是利用更长的全限定名来将不同的语句隔离开来，
-同时也实现了你上面见到的接口绑定。就算你觉得暂时用不到接口绑定，
-你也应该遵循这里的规定，以防哪天你改变了主意。
-长远来看，只要将命名空间置于合适的 Java 包命名空间之中，
-你的代码会变得更加整洁，也有利于你更方便地使用 MyBatis。
--->
+        <!--
+        命名空间的作用有两个，
+        一个是利用更长的全限定名来将不同的语句隔离开来，
+        同时也实现了你上面见到的接口绑定。就算你觉得暂时用不到接口绑定，
+        你也应该遵循这里的规定，以防哪天你改变了主意。
+        长远来看，只要将命名空间置于合适的 Java 包命名空间之中，
+        你的代码会变得更加整洁，也有利于你更方便地使用 MyBatis。
+        -->
